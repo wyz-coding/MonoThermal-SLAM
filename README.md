@@ -5,3 +5,5 @@
 
 ## MonoThermal-SLAM Result overview
 ![Demo](./demo.gif)
+
+The code is under preparation and is coming soon.
