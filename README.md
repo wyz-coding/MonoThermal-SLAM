@@ -1,3 +1,4 @@
-# MonoThermal-SLAM
+# Improving autonomous detection in dynamic environments with robust monocular thermal SLAM system
 
-This research is currently under review and we will open source the code for benchmarking and reproducibility purposes after the paper is published.
+## Result overview
+./demo.gif
