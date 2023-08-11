@@ -6,6 +6,9 @@
 ## Thermal Object segmentation
 ![Segmentation](./segmentation.gif)
 
+## Thermal Scene flow
+![Segmentation](./Scene_flow.gif)
+
 ## MonoThermal-SLAM Result overview
 ![Demo](./demo.gif)
 
