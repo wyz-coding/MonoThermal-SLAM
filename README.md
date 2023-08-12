@@ -13,7 +13,7 @@
 
 ### Campus
 
-![Demo](./demo.gif)
+![campus](./campus.gif)
 
 ### Road
 
