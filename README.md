@@ -1,7 +1,7 @@
 # Improving autonomous detection in dynamic environments with robust monocular thermal SLAM system
 
 ## Thermal Object Detection
-![Detection](./thermal_object_detection.gif)
+![Detection](./thermal_obejct_detection.gif)
 
 ## Thermal Object Segmentation
 ![Segmentation](./segmentation.gif)
