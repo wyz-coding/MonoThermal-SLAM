@@ -13,10 +13,10 @@
 
 ### Campus
 
-![campus](./campus.gif)
+![Campus](./campus.gif)
 
 ### Road
 
-![Road](./Road.gif)
+![Road](./road.gif)
 
 The code is under preparation and is coming soon.
