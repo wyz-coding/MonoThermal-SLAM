@@ -4,7 +4,7 @@
 ![Detection](./thermal_obejct_detection.gif)
 
 ## Thermal Object Segmentation
-![Segmentation](./segmentation.gif)
+![Segmentation](./thermal_obejct_detection.gif)
 
 ## Thermal Scene Flow
 ![Segmentation](./Scene_flow.gif)
