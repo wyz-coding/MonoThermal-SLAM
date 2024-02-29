@@ -30,7 +30,7 @@ def test_ffdnet(**args):
 		# Open image as a CxHxW torch.Tensor
 		if rgb_den:
 			in_ch = 3
-			model_fn = 'models/net_rgb.pth'
+			model_fn = 'models/net_thermal.pth'
 			imorig = cv2.imread(args['input'])
 
 			#输入图像
