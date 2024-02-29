@@ -19,4 +19,4 @@
 
 ![Road](./road.gif)
 
-The code is under preparation and is coming soon.
+The core source code has been uploaded and can be used for academic research. The remaining code is under review and preparation.
