@@ -29,10 +29,6 @@ namespace MonoThermal_SLAM
             return;
         mObservations[pKF]=idx;
 
-        // TODO stereo line remain
-//        if(pKF->mvuRight[idx]>=0)
-//            nObs+=2;
-//        else
             nObs++;
     }
 
@@ -43,13 +39,6 @@ namespace MonoThermal_SLAM
             unique_lock<mutex> lock(mMutexFeatures);
             if(mObservations.count(pKF))
             {
-                // TODO stereo line remain
-//                int idx = mObservations[pKF];
-//                if(pKF->mvuRight[idx]>=0)
-//                    nObs-=2;
-//                else
-                    nObs--;
-
                 mObservations.erase(pKF);
 
                 if(mpRefKF==pKF)
