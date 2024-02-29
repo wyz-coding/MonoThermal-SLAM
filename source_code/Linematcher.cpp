@@ -1,7 +1,6 @@
 #include "include/Linematcher.h"
 #include "projection_factor.hpp"
 
-
 namespace MonoThermal_SLAM
 {
 
