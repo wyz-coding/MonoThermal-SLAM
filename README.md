@@ -1,4 +1,4 @@
-# Improving autonomous detection in dynamic environments with robust monocular thermal SLAM system
+# MonoThermal-SLAM
 
 ## Thermal Object Detection
 ![Detection](./thermal_obejct_detection.gif)
