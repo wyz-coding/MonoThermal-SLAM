@@ -19,7 +19,6 @@ namespace MonoThermal_SLAM
                 std::vector<pair<size_t, size_t> > &vMatchedPairs
                 ) const;
 
-
         int SearchByProjection(
                 Frame &F, const std::vector<MapLine*>& vpLocalMapLines
         ) const;
