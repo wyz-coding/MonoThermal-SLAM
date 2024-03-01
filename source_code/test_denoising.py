@@ -30,12 +30,12 @@ def test_ffdnet(**args):
 		# Open image as a CxHxW torch.Tensor
 		if rgb_den:
 			in_ch = 3
-			model_fn = 'models/net_thermal.pth'
+			model_fn = 'models/net_thermal_3.pth'
 			imorig = cv2.imread(args['input'])
 
 			#输入图像
-			path = "E:\红外图像降噪数据库\红外图像降噪数据8bit库\红外降噪数据库\数据//noise//noise_"+str(num)+".raw"
-			path_groud_truth = "D://FirstPaper//One_paper_INFERENCE//TID//Ground_Truth//gt_" + str(num) + ".png"
+			path = "./红外图像降噪数据库/红外图像降噪数据8bit库/红外降噪数据库/数据/noise/noise_"+str(num)+".raw"
+			path_groud_truth = "./TID/Ground_Truth/gt_" + str(num) + ".png"
 			img_gt = cv2.imread(path_groud_truth)
 			imorig = np.fromfile(path,dtype=np.uint16)
 			imorig = imorig.reshape(192,256)
@@ -44,7 +44,7 @@ def test_ffdnet(**args):
 		else:
 			# from HxWxC to  CxHxW grayscale image (C=1)
 			in_ch = 1
-			model_fn = 'models/net_gray.pth'
+			model_fn = 'models/net_thermal_1.pth'
 			imorig = cv2.imread(args['input'], cv2.IMREAD_GRAYSCALE)
 			imorig = np.expand_dims(imorig, 0)
 		imorig = np.expand_dims(imorig, 0)
@@ -140,7 +140,7 @@ def test_ffdnet(**args):
 			print("*********************************")
 			# psnr_noisy = batch_psnr(imnoisy, imorig, 1.)
 			# print('psnr_noisy',psnr_noisy)
-			# path_groud_truth = "E:\红外图像降噪数据库\红外图像降噪数据8bit库\红外降噪数据库\数据//groundtruth//gt_1500.raw"
+			# path_groud_truth = "./红外图像降噪数据库/红外图像降噪数据8bit库/红外降噪数据库/数据/groundtruth/gt_1500.raw"
 			# img_gt = np.fromfile(path_groud_truth,dtype=np.uint16)
 			# img_gt = img_gt.reshape(192,256)
 			# from HxWxC to CxHxW, RGB image
@@ -165,14 +165,14 @@ def test_ffdnet(**args):
 			outimg = variable_to_cv2_image(outim)
 			ori = variable_to_cv2_image(imorig)
 
-			ori = cv2.flip(ori, 0)  # 原型：cv2.flip(src, flipCode[, dst]) → dst  flipCode表示对称轴 0：x轴  1：y轴.  -1：both
+			ori = cv2.flip(ori, 0)  
 			ori = cv2.transpose(ori)
-			save_path = "D://FirstPaper//One_paper_INFERENCE//TID//Ground_Truth//gt_"+str(num)+".png"
+			save_path = "./TID/Ground_Truth/gt_"+str(num)+".png"
 			# cv2.imwrite(save_path, ori)
 
-			outimg = cv2.flip(outimg, 0)  # 原型：cv2.flip(src, flipCode[, dst]) → dst  flipCode表示对称轴 0：x轴  1：y轴.  -1：both
+			outimg = cv2.flip(outimg, 0) 
 			outimg = cv2.transpose(outimg)
-			ffd_save_path = "D://FirstPaper//One_paper_INFERENCE//TID//FFD_25//ffd_" + str(num) + ".png"
+			ffd_save_path = "./TID/FFD_25/ffd_" + str(num) + ".png"
 			# cv2.imwrite(ffd_save_path, outimg)
 			image = np.concatenate((ori,img_gt,outimg), axis=1)
 			cv2.imshow("ffdnet", image)
@@ -190,7 +190,7 @@ def test_ffdnet_video(**args):
 	class VideoWriter:
 		def __init__(self, name, width, height, fps=25):
 			# type: (str, int, int, int) -> None
-			if not name.endswith('.mp4'):  # 保证文件名的后缀是.mp4
+			if not name.endswith('.mp4'):  
 				name += '.mp4'
 				# warnings.warn('video name should ends with ".mp4"')
 			self.__name = name  # 文件名
@@ -211,12 +211,12 @@ def test_ffdnet_video(**args):
 
 	width = 640
 	height = 470
-	vw = VideoWriter('F://FL2.mp4', width, height)
+	vw = VideoWriter('FL2.mp4', width, height)
 
 
 	# Init logger
 	logger = init_logger_ipol()
-	cap = cv2.VideoCapture('E://CVC-14//FILR_Day_Test_Frame_Pos.mp4')
+	cap = cv2.VideoCapture('./CVC-14/FILR_Day_Test_Frame_Pos.mp4')
 	# cap = cv2.VideoCapture(0)
 	while cap.isOpened():
 		ret, frame = cap.read()
@@ -231,7 +231,7 @@ def test_ffdnet_video(**args):
 		# Open image as a CxHxW torch.Tensor
 		if rgb_den:
 			in_ch = 3
-			model_fn = 'models/net_rgb.pth'
+			model_fn = 'models/net_thermal_3.pth'
 			imorig = cv2.imread(args['input'])
 			imorig = frame
 			# from HxWxC to CxHxW, RGB image
@@ -239,7 +239,7 @@ def test_ffdnet_video(**args):
 		else:
 			# from HxWxC to  CxHxW grayscale image (C=1)
 			in_ch = 1
-			model_fn = 'models/net_gray.pth'
+			model_fn = 'models/net_thermal_1.pth'
 			imorig = cv2.imread(args['input'], cv2.IMREAD_GRAYSCALE)
 			imorig = np.expand_dims(imorig, 0)
 		imorig = np.expand_dims(imorig, 0)
@@ -383,7 +383,7 @@ def test_ffdnet_image(**args):
 		# Open image as a CxHxW torch.Tensor
 	if rgb_den:
 		in_ch = 3
-		model_fn = 'models/net_rgb.pth'
+		model_fn = 'models/net_thermal_3.pth'
 		imorig = cv2.imread('./infrared/right_clahe_0.03.png')
 		# imorig = cv2.imread('./infrared/right_0.02.png')
 		# from HxWxC to CxHxW, RGB image
@@ -391,7 +391,7 @@ def test_ffdnet_image(**args):
 	else:
 		# from HxWxC to  CxHxW grayscale image (C=1)
 		in_ch = 1
-		model_fn = 'models/net_gray.pth'
+		model_fn = 'models/net_thermal_1.pth'
 		imorig = cv2.imread(args['input'], cv2.IMREAD_GRAYSCALE)
 		imorig = np.expand_dims(imorig, 0)
 	imorig = np.expand_dims(imorig, 0)
@@ -494,7 +494,7 @@ def test_ffdnet_image(**args):
 	if not args['dont_save_results']:
 		outimg = variable_to_cv2_image(outim)
 
-		# outimg = cv2.flip(outimg, 0)  # 原型：cv2.flip(src, flipCode[, dst]) → dst  flipCode表示对称轴 0：x轴  1：y轴.  -1：both
+		# outimg = cv2.flip(outimg, 0) 
 		# outimg = cv2.transpose(outimg)
 		cv2.imshow("ffdnet", outimg)
 		# cv2.imwrite("./infrared/FFD_right_0.03.png",outimg)
