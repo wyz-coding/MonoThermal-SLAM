@@ -4,7 +4,6 @@ import rospy
 import signal
 import sys
 import numpy as np
-
 from sensor_msgs.msg import Image
 from sensor_msgs.msg import CompressedImage
 from cv_bridge import CvBridge, CvBridgeError
