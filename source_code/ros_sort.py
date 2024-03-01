@@ -11,6 +11,7 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 import sys
 import signal
+
 def signal_handler(signal, frame): # ctrl + c -> exit program
         print('You pressed Ctrl+C!')
         sys.exit(0)
