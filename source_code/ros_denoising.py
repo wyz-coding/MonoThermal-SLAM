@@ -9,11 +9,9 @@ from torch.autograd import Variable
 from models import FFDNet
 from utils import batch_psnr, normalize, init_logger_ipol, variable_to_cv2_image, remove_dataparallel_wrapper, is_rgb
 import tensorflow as tf
-
 import rospy
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
-
 
 def denoise_frame(frame, args):
     try:
