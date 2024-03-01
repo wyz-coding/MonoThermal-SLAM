@@ -32,8 +32,6 @@ def test_ffdnet(**args):
 			in_ch = 3
 			model_fn = 'models/net_thermal_3.pth'
 			imorig = cv2.imread(args['input'])
-
-			#输入图像
 			path = "./红外图像降噪数据库/红外图像降噪数据8bit库/红外降噪数据库/数据/noise/noise_"+str(num)+".raw"
 			path_groud_truth = "./TID/Ground_Truth/gt_" + str(num) + ".png"
 			img_gt = cv2.imread(path_groud_truth)
@@ -186,7 +184,6 @@ def test_ffdnet(**args):
 def test_ffdnet_video(**args):
 	r"""Denoises an input image with FFDNet
 	"""
-
 	class VideoWriter:
 		def __init__(self, name, width, height, fps=25):
 			# type: (str, int, int, int) -> None
@@ -198,7 +195,6 @@ def test_ffdnet_video(**args):
 			self.__width = width  # 宽
 			fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # 如果是mp4视频，编码需要为mp4v
 			self.__writer = cv2.VideoWriter(name, fourcc, fps, (width, height))
-
 		def write(self, frame):
 			if frame.dtype != np.uint8:  # 检查frame的类型
 				raise ValueError('frame.dtype should be np.uint8')
@@ -208,12 +204,9 @@ def test_ffdnet_video(**args):
 				# warnings.warn('长和宽不等于创建视频写入时的设置，此frame不会被写入视频')
 				return
 			self.__writer.write(frame)
-
 	width = 640
 	height = 470
 	vw = VideoWriter('FL2.mp4', width, height)
-
-
 	# Init logger
 	logger = init_logger_ipol()
 	cap = cv2.VideoCapture('./CVC-14/FILR_Day_Test_Frame_Pos.mp4')
@@ -227,7 +220,6 @@ def test_ffdnet_video(**args):
 			rgb_den = is_rgb(args['input'])
 		except:
 			raise Exception('Could not open the input image')
-
 		# Open image as a CxHxW torch.Tensor
 		if rgb_den:
 			in_ch = 3
@@ -243,7 +235,6 @@ def test_ffdnet_video(**args):
 			imorig = cv2.imread(args['input'], cv2.IMREAD_GRAYSCALE)
 			imorig = np.expand_dims(imorig, 0)
 		imorig = np.expand_dims(imorig, 0)
-
 		# Handle odd sizes
 		expanded_h = False
 		expanded_w = False
@@ -253,23 +244,18 @@ def test_ffdnet_video(**args):
 			expanded_h = True
 			imorig = np.concatenate((imorig, \
 					imorig[:, :, -1, :][:, :, np.newaxis, :]), axis=2)
-
 		if sh_im[3]%2 == 1:
 			expanded_w = True
 			imorig = np.concatenate((imorig, \
 					imorig[:, :, :, -1][:, :, :, np.newaxis]), axis=3)
-
 		imorig = normalize(imorig)
 		imorig = torch.Tensor(imorig)
-
 		# Absolute path to model file
 		model_fn = os.path.join(os.path.abspath(os.path.dirname(__file__)), \
 					model_fn)
-
 		# Create model
 		# print('Loading model ...\n')
 		net = FFDNet(num_input_channels=in_ch)
-
 		# Load saved weights
 		if args['cuda']:
 			state_dict = torch.load(model_fn)
