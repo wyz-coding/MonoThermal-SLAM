@@ -28,7 +28,7 @@ parser.add_argument('--dataset', default='seq',
 parser.add_argument('--datapath', default='E://CVC-14//Day//Visible//NewTest//FramesPos//',
                     help='dataset path')
 
-parser.add_argument('--loadmodel', default='robust.pth',
+parser.add_argument('--loadmodel', default='robust_thermal.pth',
                     help='model path')
 parser.add_argument('--outdir', default='.//output//',
                     help='output dir')
